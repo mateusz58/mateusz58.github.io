@@ -1,78 +1,44 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>Todo App</title>
-    <link rel="stylesheet" href="https://bootswatch.com/4/lux/bootstrap.min.css">
+    <title>Kullanıcı Kitap</title>
+    <script type="text/javascript" src="jquery-3.4.1.min.js"></script>
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" type="text/css" href="./css/bootstrap.css">
+    <script type="text/javascript" src="script.js"></script>
+    <script type="text/javascript" src="bootstrap.js"></script>
 </head>
 <body>
 
-<!-- NAVIGATION  -->
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <a class="navbar-brand" href="#">Tasks App</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav ml-auto">
-            <form class="form-inline my-2 my-lg-0">
-                <input name="search" id="search" class="form-control mr-sm-2" type="search" placeholder="Search"
-                       aria-label="Search">
-                <button class="btn btn-success my-2 my-sm-0" type="submit">Search</button>
-            </form>
-        </ul>
-    </div>
-</nav>
-
-<div class="container">
-    <div class="row p-4">
-        <div class="col-md-5">
-            <div class="card">
-                <div class="card-body">
-                    <!-- FORM TO ADD TASKS -->
-                    <form id="task-form">
-                        <div class="form-group">
-                            <input type="text" id="name" placeholder="Task Name" class="form-control">
-                        </div>
-                        <div class="form-group">
-                            <textarea id="description" cols="30" rows="10" class="form-control"
-                                      placeholder="Task Description"></textarea>
-                        </div>
-                        <input type="hidden" id="taskId">
-                        <button type="submit" class="btn btn-primary btn-block text-center">
-                            Save Task
-                        </button>
-                    </form>
-                </div>
-            </div>
-        </div>
-
-        <!-- TABLE  -->
-        <div class="col-md-7">
-            <div class="card my-4" id="task-result">
-                <div class="card-body">
-                    <!-- SEARCH -->
-                    <ul id="container"></ul>
-                </div>
-            </div>
-
-            <table class="table table-bordered table-sm">
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-9">
+            <table class="table table-striped">
                 <thead>
                 <tr>
-                    <td>Id</td>
-                    <td>Title</td>
-                    <td>Content</td>
+                    <th scope="col">Id</th>
+                    <th scope="col">İsim</th>
+                    <th scope="col">Yaş</th>
+                    <th scope="col">Kitap</th>
                 </tr>
                 </thead>
-                <tbody id="tasks"></tbody>
+                <tbody>
+
+                </tbody>
             </table>
+        </div>
+        <div class="col-3">
+            <div class="form-group form-vales">
+                <input id="title" class="form-control" placeholder="İsim">
+                <input id="content" class="form-control" placeholder="Yaş">
+                <button id="save" type="button" class="btn btn-info">Kaydet</button>
+                <button id="update" type="button" class="btn btn-success">Güncelle</button>
+                <div class="alert" role="alert">
+                </div>
+            </div>
         </div>
     </div>
 </div>
-<script src="jquery-3.4.1.min.js"></script>
-<script src="script.js"></script>
-</body>
 
+</body>
 </html>
