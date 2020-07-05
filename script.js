@@ -46,6 +46,7 @@ $(document).ready(function() {
             success: function(response) {
                 const tasks = JSON.parse(response);
                 let template = '';
+                console.log(response);
                 tasks.forEach(task => {
                     template += `
                   <tr taskId="${task.id}">
