@@ -1,41 +1,28 @@
 $(document).ready(function() {
-    const apiRoot = 'localhost:8081/api/v1/tasks';
-    const trelloApiRoot = 'localhost:8081/api/v1/trello';
+    const apiRoot = 'localhost:8081/api/v1/';
     const datatableRowTemplate = $('[data-datatable-row-template]').children()[0];
     const $tasksContainer = $('[data-tasks-container]');
 
-    var availableBoards = {};
-    var availableTasks = {};
+  var availableBoards = {};
+  var availableTasks = {};
 
-    function getAllAvailableBoards(callback, callbackArgs) {
-        var requestUrl = trelloApiRoot + 'boards';
+  // init
 
-        $.ajax({
-            url: requestUrl,
-            method: 'GET',
-            contentType: 'application/json',
-            success: function(boards) { callback(callbackArgs, boards); }
-        });
-    }
+  getAllTasks();
 
-    function getAllTasks() {
-        const requestUrl = apiRoot + 'tasks';
+  function getAllAvailableBoards(callback, callbackArgs) {
+    var requestUrl = apiRoot + 'trello/boards';
 
-        $.ajax({
-            url: requestUrl,
-            method: 'GET',
-            contentType: "application/json",
-            success: function(tasks) {
-                tasks.forEach(task => {
-                    availableTasks[task.id] = task;
-                });
-
-                getAllAvailableBoards(handleDatatableRender, tasks);
-            }
-        });
-    }
+    $.ajax({
+      url: requestUrl,
+      method: 'GET',
+      contentType: 'application/json',
+      success: function(boards) { callback(callbackArgs, boards); }
+    });
+  }
 
     function createElement(data) {
+        console.log('Element create');
         const element = $(datatableRowTemplate).clone();
 
         element.attr('data-task-id', data.id);
@@ -46,6 +33,23 @@ $(document).ready(function() {
         element.find('[data-task-content-section] [data-task-content-input]').val(data.content);
 
         return element;
+    }
+
+    function getAllTasks() {
+        const requestUrl = apiRoot + 'tasks';
+        console.log('Requesting url ' + requestUrl);
+
+        $.ajax({
+            url: requestUrl,
+            method: 'GET',
+            contentType: "application/json",
+            success: function(tasks) {
+                tasks.forEach(task => {
+                    availableTasks[task.id] = task;
+                });
+                getAllAvailableBoards(handleDatatableRender, tasks);
+            }
+        });
     }
 
     function prepareBoardOrListSelectOptions(availableChoices) {
@@ -190,7 +194,6 @@ $(document).ready(function() {
     }
 
     $('[data-task-add-form]').on('submit', handleTaskSubmitRequest);
-
     $tasksContainer.on('change','[data-board-name-select]', handleBoardNameSelect);
     $tasksContainer.on('click','[data-trello-card-creation-trigger]', handleCardCreationRequest);
     $tasksContainer.on('click','[data-task-edit-button]', toggleEditingState);
