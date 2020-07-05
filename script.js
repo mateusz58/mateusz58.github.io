@@ -2,6 +2,7 @@ $(document).ready(function() {
     const apiRoot = 'localhost:8081/api/v1/';
     const datatableRowTemplate = $('[data-datatable-row-template]').children()[0];
     const $tasksContainer = $('[data-tasks-container]');
+    console.log('jquery is working');
 
   var availableBoards = {};
   var availableTasks = {};
@@ -9,6 +10,7 @@ $(document).ready(function() {
   // init
 
   getAllTasks();
+    $('#task-result').hide();
 
   function getAllAvailableBoards(callback, callbackArgs) {
     var requestUrl = apiRoot + 'trello/boards';
@@ -35,6 +37,22 @@ $(document).ready(function() {
         return element;
     }
 
+    $('#task-form').submit(e => {
+        e.preventDefault();
+        const postData = {
+            name: $('#name').val(),
+            description: $('#description').val(),
+            id: $('#taskId').val()
+        };
+        const url = apiRoot + 'tasks';
+        console.log(postData, url);
+        $.post(url, postData, (response) => {
+            console.log(response);
+            $('#task-form').trigger('reset');
+            fetchTasks();
+        });
+    });
+
     function getAllTasks() {
         const requestUrl = apiRoot + 'tasks';
         console.log('Requesting url ' + requestUrl);
@@ -46,7 +64,7 @@ $(document).ready(function() {
             success: function(response) {
                 const tasks = JSON.parse(response);
                 let template = '';
-                console.log(response);
+                console.log('Reponse call' + response);
                 tasks.forEach(task => {
                     template += `
                   <tr taskId="${task.id}">
