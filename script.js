@@ -43,11 +43,28 @@ $(document).ready(function() {
             url: requestUrl,
             method: 'GET',
             contentType: "application/json",
-            success: function(tasks) {
+            success: function(response) {
+                const tasks = JSON.parse(response);
+                let template = '';
                 tasks.forEach(task => {
-                    availableTasks[task.id] = task;
+                    template += `
+                  <tr taskId="${task.id}">
+                  <td>${task.id}</td>
+                  <td>
+                  <a href="#" class="task-item">
+                    ${task.title} 
+                  </a>
+                  </td>
+                  <td>${task.content}</td>
+                  <td>
+                    <button class="task-delete btn btn-danger">
+                     Delete 
+                    </button>
+                  </td>
+                  </tr>
+                `
                 });
-                getAllAvailableBoards(handleDatatableRender, tasks);
+                $('#tasks').html(template);
             }
         });
     }
