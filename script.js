@@ -9,7 +9,7 @@ $(document).ready(function(){
 
         $.ajax({
             type:"DELETE",
-            url:"http://localhost:8081/api/v1/tasks" + id,
+            url:"http://localhost:8081/api/v1/tasks/" + id,
             success: function(data){
                 assignDataToTable();
             },
