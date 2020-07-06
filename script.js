@@ -4,6 +4,7 @@ $(document).ready(function(){
 
     assignDataToTable();
 
+    // Working so far
     $('table').on('click', 'button[id="delete"]', function(e){
         var id = $(this).closest('tr').children('td:first').text();
 
@@ -18,14 +19,14 @@ $(document).ready(function(){
                 alert(err);
             }
         });
-
     })
+
+
 
     $('table').on('click', 'button[id="edit"]', function(e){
         var id = $(this).closest('tr').children('td:first').text();
-        var name = $(this).closest('tr').children('td:nth-child(2)').text();
-        var age = $(this).closest('tr').children('td:nth-child(3)').text();
-        var book = $(this).closest('tr').children('td:nth-child(4)').text();
+        var title = $(this).closest('tr').children('td:nth-child(2)').text();
+        var content = $(this).closest('tr').children('td:nth-child(3)').text();
 
         $("#name").val(name);
         $("#age").val(age);
