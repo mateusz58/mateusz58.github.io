@@ -24,13 +24,11 @@ $(document).ready(function(){
 
 
     $('table').on('click', 'button[id="edit"]', function(e){
-        var id = $(this).closest('tr').children('td:first').text();
-        var title = $(this).closest('tr').children('td:nth-child(2)').text();
-        var content = $(this).closest('tr').children('td:nth-child(3)').text();
+        var title = $(this).closest('tr').children('td:first').text();
+        var content = $(this).closest('tr').children('td:nth-child(2)').text();
 
-        $("#name").val(name);
-        $("#age").val(age);
-        $("#book").val(book);
+        $("#title").val(title);
+        $("#content").val(content);
 
         $("#update").show();
         $("#save").hide();
