@@ -35,25 +35,21 @@ $(document).ready(function(){
 
         $("#update").click(function() {
 
-            var ageNum = parseInt($("#age").val());
-
             var jsonVar = {
-                name: $("#name").val(),
-                age: ageNum,
-                book: $("#book").val()
+                title: $("#title").val(),
+                content: $("#content").val()
             };
 
             $.ajax({
                 type:"PUT",
                 data: JSON.stringify(jsonVar),
                 contentType: "application/json",
-                url:"http://localhost:8080/api/users/" + id,
+                url:"http://localhost:8080/api/v1/tasks/" + id,
                 success: function(data){
                     $("#update").hide();
                     $("#save").show();
-                    $("#name").val("");
-                    $("#age").val("");
-                    $("#book").val("");
+                    $("#title").val("");
+                    $("#content").val("");
                     assignDataToTable();
                 },
                 error: function(err) {
