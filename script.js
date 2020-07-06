@@ -86,9 +86,16 @@ $(document).ready(function(){
             content: $("#content").val(),
         };
 
+        const params = new URLSearchParams({
+            title: $("#title").val(),
+            content: $("#content").val(),
+        })
+
+        const url = "http://localhost:8081/api/v1/tasks" +"?" + params;
+
         $.ajax({
             type:"POST",
-            url:"http://localhost:8081/api/v1/tasks",
+            url:url,
             data: JSON.stringify(jsonVar),
             contentType: "application/json",
             success: function(data){
