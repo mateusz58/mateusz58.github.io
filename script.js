@@ -121,8 +121,8 @@ $(document).ready(function(){
                             <td>" +  tasks[i].id + "</td> \
                             <td>" +  tasks[i].title + "</td> \
                             <td>" +  tasks[i].content + "</td> \
-                            <td> \ <button id='delete' class='btn btn-danger'>Sil</button> \
-                           <button id='edit' class='btn btn-warning'>Düzenle</button> \ </td> \
+                            <td> \ <button id='delete' class='btn btn-danger'>Delete</button> \
+                           <button id='edit' class='btn btn-warning'>Edit</button> \ </td> \
                         </tr>");
                 }
             },
