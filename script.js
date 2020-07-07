@@ -44,8 +44,6 @@ $(document).ready(function(){
                 content: $("#content").val(),
             })
 
-            http://localhost:8081/api/v1/tasks/46?title=updated&content=updated
-
             const url = "http://localhost:8081/api/v1/tasks/" +"?" + params;
 
             $.ajax({
