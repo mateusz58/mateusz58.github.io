@@ -1,9 +1,9 @@
 $(document).ready(function(){
 
-    $("#update").hide();
-
-    assignDataToTable();
     const api = "localhost:8081/api/v1/tasks";
+
+    $("#update").hide();
+    assignDataToTable();
 
     // Delete
     $('table').on('click', 'button[id="delete"]', function(e){
