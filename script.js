@@ -96,7 +96,7 @@ $(document).ready(function(){
             content: $("#content").val(),
         })
 
-        const url = api +"?" + params;
+        const url = "http://localhost:8081/api/v1/tasks/" +"?" + params;
 
         $.ajax({
             type:"POST",
