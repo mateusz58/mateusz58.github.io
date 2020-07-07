@@ -3,8 +3,9 @@ $(document).ready(function(){
     $("#update").hide();
 
     assignDataToTable();
+    const api = "localhost:8081/api/v1/tasks";
 
-    // Working so far
+    // Delete
     $('table').on('click', 'button[id="delete"]', function(e){
         var id = $(this).closest('tr').children('td:first').text();
 
@@ -21,8 +22,7 @@ $(document).ready(function(){
         });
     })
 
-
-
+    //Edit
     $('table').on('click', 'button[id="edit"]', function(e){
         var title = $(this).closest('tr').children('td:first').text();
         var content = $(this).closest('tr').children('td:nth-child(2)').text();
@@ -37,14 +37,21 @@ $(document).ready(function(){
 
             var jsonVar = {
                 title: $("#title").val(),
-                content: $("#content").val()
+                content: $("#content").val(),
             };
+
+            const params = new URLSearchParams({
+                title: $("#title").val(),
+                content: $("#content").val(),
+            })
+
+            const url = api +"?" + params;
 
             $.ajax({
                 type:"PUT",
                 data: JSON.stringify(jsonVar),
                 contentType: "application/json",
-                url:"http://localhost:8080/api/v1/tasks/" + id,
+                url: url,
                 success: function(data){
                     $("#update").hide();
                     $("#save").show();
@@ -91,7 +98,7 @@ $(document).ready(function(){
             content: $("#content").val(),
         })
 
-        const url = "http://localhost:8081/api/v1/tasks" +"?" + params;
+        const url = api +"?" + params;
 
         $.ajax({
             type:"POST",
@@ -114,7 +121,7 @@ $(document).ready(function(){
         $.ajax({
             type:"GET",
             contentType: "application/json",
-            url:"http://localhost:8081/api/v1/tasks",
+            url:api,
             success: function(data) {
                 var tasks = JSON.parse(JSON.stringify(data));
                 for (var i in tasks) {
