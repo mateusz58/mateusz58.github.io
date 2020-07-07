@@ -27,7 +27,7 @@ $(document).ready(function(){
         var content = $(this).closest('tr').children('td:nth-child(3)').text();
 
         $("#id").val(id);
-        $("#title").val(id);
+        $("#title").val(title);
         $("#content").val(content);
 
         $("#update").show();
