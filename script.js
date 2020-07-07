@@ -22,11 +22,11 @@ $(document).ready(function(){
 
     //Edit
     $('table').on('click', 'button[id="edit"]', function(e){
-        var title = $(this).closest('tr').children('td:first').text();
-        var content = $(this).closest('tr').children('td:nth-child(2)').text();
+        var id = $(this).closest('tr').children('td:first').text();
+        var title = $(this).closest('tr').children('td:nth-child(2)').text();
 
-        $("#title").val(title);
-        $("#content").val(content);
+        $("#title").val(id);
+        $("#content").val(title);
 
         $("#update").show();
         $("#save").hide();
@@ -38,10 +38,13 @@ $(document).ready(function(){
                 content: $("#content").val(),
             };
 
+            var id = $("#title").val()
             const params = new URLSearchParams({
                 title: $("#title").val(),
                 content: $("#content").val(),
             })
+
+            http://localhost:8081/api/v1/tasks/46?title=updated&content=updated
 
             const url = "http://localhost:8081/api/v1/tasks/" +"?" + params;
 
