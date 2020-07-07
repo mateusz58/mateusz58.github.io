@@ -121,7 +121,7 @@ $(document).ready(function(){
         $.ajax({
             type:"GET",
             contentType: "application/json",
-            url:api,
+            url:"http://localhost:8081/api/v1/tasks",
             success: function(data) {
                 var tasks = JSON.parse(JSON.stringify(data));
                 for (var i in tasks) {
