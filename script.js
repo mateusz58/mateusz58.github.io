@@ -24,9 +24,11 @@ $(document).ready(function(){
     $('table').on('click', 'button[id="edit"]', function(e){
         var id = $(this).closest('tr').children('td:first').text();
         var title = $(this).closest('tr').children('td:nth-child(2)').text();
+        var content = $(this).closest('tr').children('td:nth-child(3)').text();
 
+        $("#id").val(id);
         $("#title").val(id);
-        $("#content").val(title);
+        $("#content").val(content);
 
         $("#update").show();
         $("#save").hide();
@@ -34,17 +36,17 @@ $(document).ready(function(){
         $("#update").click(function() {
 
             var jsonVar = {
+                id: $("#id").val(),
                 title: $("#title").val(),
                 content: $("#content").val(),
             };
 
-            var id = $("#title").val()
             const params = new URLSearchParams({
                 title: $("#title").val(),
                 content: $("#content").val(),
             })
 
-            const url = "http://localhost:8081/api/v1/tasks/" +"?" + params;
+            const url = "http://localhost:8081/api/v1/tasks/" + id + "?" + params;
 
             $.ajax({
                 type:"PUT",
